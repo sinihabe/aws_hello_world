@@ -33,7 +33,7 @@
                 "Tags": [
                     {
                         "Key": "Name",
-                        "Value": "MY VPC"
+                        "Value": "HELLO VPC"
                     }
                 ]
             }
@@ -270,7 +270,13 @@
 			"Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
 			"Properties" : {
 				"SecurityGroups": [ {"Ref": "WebSecurityGroup"} ],
-				"Subnets" :[ { "Ref" : "WebSubnetA" }, { "Ref" : "WebSubnetB" } ]
+				"Subnets" :[ { "Ref" : "WebSubnetA" }, { "Ref" : "WebSubnetB" } ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "HELLO-ELB"
+                    }
+                ]
 			}
 		},
 

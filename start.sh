@@ -30,3 +30,6 @@ if [ ! -f aws/hellokeys.pem ]; then
 fi
 
 aws cloudformation create-stack --stack-name hello-world-stack  --template-body file://$PWD/aws/hello-world-aws.json
+
+echo "Your application is ready and available at ..."
+aws elbv2 describe-load-balancers  --output=table |grep DNS
