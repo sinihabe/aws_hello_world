@@ -239,11 +239,11 @@
                 "ImageId": "ami-79873901",
                 "InstanceMonitoring": false,
                 "InstanceType": "t2.micro",
-                "KeyName": "mr",
+                "KeyName": "hellokeys",
                 "PlacementTenancy": "default",
                 "SecurityGroups": [ { "Ref": "WebSecurityGroup" } ],
                 "UserData": {
-                    "Fn::Base64": "#!/bin/bash\napt-get update -qq\n#apt-get upgrade -qq # \napt-get -y install php php-cli libapache2-mod-php php-mcrypt php-mysql apache2 mysql-client stress htop\nsystemctl restart apache2\n"
+                    "Fn::Base64": "#!/bin/bash\napt-get update -qq\n#apt-get upgrade -qq # \napt-get -y install curl php php-cli libapache2-mod-php php-mcrypt php-mysql apache2 mysql-client\nrm /var/www/html/index.html\n curl https://raw.githubusercontent.com/sinihabe/aws_hello_world/master/app/index.php > index.php\nsystemctl restart apache2\n"
                 }
             }
         },
@@ -253,7 +253,7 @@
             "Properties": {
                 "LaunchConfigurationName": { "Ref": "WebLaunchConfig" },
 				"TargetGroupARNs" : [ { "Ref" : "ALBTargetGroup" } ],
-                "MinSize": "2",
+                "MinSize": "1",
                 "MaxSize": "3",
                 "VPCZoneIdentifier": [ { "Ref": "WebSubnetA" }, { "Ref": "WebSubnetB" } ],
                 "Tags": [
