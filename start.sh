@@ -26,6 +26,7 @@ if [ ! -f aws/hellokeys.pem ]; then
     echo "AWS ssh key not found, creating one ..."
 	aws ec2 delete-key-pair --key-name hellokeys
 	aws ec2 create-key-pair --key-name hellokeys --query 'KeyMaterial' --output text > aws/hellokeys.pem
+	chmod 400 aws/hellokeys.pem
 fi
 
 aws cloudformation create-stack --stack-name hello-world-stack  --template-body file://$PWD/aws/hello-world-aws.json
