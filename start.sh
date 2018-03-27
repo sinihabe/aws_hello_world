@@ -11,15 +11,16 @@ if ! [ -x "$(command -v aws)" ]; then
 	exit 1
 fi
 
-# set region
-aws configure set region us-west-2
-
 # configure aws
 echo "Current aws configuration"
 aws configure list
 
 echo "Lets go over with aws config"
 aws configure
+
+# set region
+aws configure set region us-west-2
+
 
 # do we have ssh key ?
 if [ ! -f aws/hellokeys.pem ]; then
